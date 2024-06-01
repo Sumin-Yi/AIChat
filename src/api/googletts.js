@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const fetchTTS = async (text) => {
-  const apiUrl = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${process.env.GOOGLE_API_KEY}`;
+  const apiUrl = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${process.env.REACT_APP_GOOGLE_API_KEY}`;
   const requestBody = {
     input: { text },
     voice: { languageCode: 'en-US', ssmlGender: 'NEUTRAL' },
