@@ -3,6 +3,7 @@ import { fetchChatGPTResponse } from './api/openai';
 import SpeechRecComponent from './components/speechRec';
 import SpeechSynComponent from './components/speechSyn';
 
+
 const App = () => {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
