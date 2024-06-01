@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { fetchChatGPTResponse } from './api/openai';
+import SpeechRecComponent from './components/speechRec';
+import SpeechSynComponent from './components/speechSyn';
 
-function App() {
+const App = () => {
+  const [messages, setMessages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [botResponse, setBotResponse] = useState('');
+
+  const handleTranscriptReceived = async (transcript) => {
+    const userMessage = { text: transcript, sender: 'user' };
+    setMessages((prevMessages) => [...prevMessages, userMessage]);
+
+    setIsLoading(true);
+    const response = await fetchChatGPTResponse(transcript);
+    setIsLoading(false);
+
+    const botMessage = { text: response, sender: 'bot' };
+    setMessages((prevMessages) => [...prevMessages, botMessage]);
+    setBotResponse(response);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Ringle</h1>
+      <div>
+        {messages.map((message, index) => (
+          <div key={index} className={message.sender}>
+            <p>{message.text}</p>
+          </div>
+        ))}
+      </div>
+      {isLoading && <p>로딩 중...</p>}
+      <SpeechRecComponent onTranscriptReceived={handleTranscriptReceived} />
+      <SpeechSynComponent text={botResponse} />
     </div>
   );
-}
+};
 
 export default App;
