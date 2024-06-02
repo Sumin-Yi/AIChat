@@ -1,10 +1,24 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { sendAudio } from '../api/googlestt';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import './speechRec.css';
 
-const SpeechRecComponent = ({ onTranscriptReceived }) => {
+const SpeechRecComponent = ({ onTranscriptReceived, onListeningStatusChange }) => {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
   const recorderRef = useRef(null);
+
+  useEffect(() => {
+    onListeningStatusChange(isListening);
+  }, [isListening, onListeningStatusChange]);
+
+  const handleToggleListening = () => {
+    if (isListening) {
+      handleStopListening();
+    } else {
+      handleStartListening();
+    }
+  };
 
   const handleStartListening = () => {
     setIsListening(true);
@@ -71,14 +85,10 @@ const SpeechRecComponent = ({ onTranscriptReceived }) => {
   };
 
   return (
-    <div>
-      <button onClick={handleStartListening} disabled={isListening}>
-        음성 인식 시작
+    <div style={{ margin: '20px 0' }}>
+      <button onClick={handleToggleListening} className="icon-button">
+        {isListening ? <i className="fas fa-stop"></i> : <i className="fas fa-microphone"></i>}
       </button>
-      <button onClick={handleStopListening} disabled={!isListening}>
-        음성 인식 중지
-      </button>
-      <p>{transcript}</p>
     </div>
   );
 };

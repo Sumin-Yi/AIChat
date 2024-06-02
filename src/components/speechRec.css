@@ -1,0 +1,17 @@
+.icon-button {
+    background: none;
+    border: none;
+    color: #503CC8;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .icon-button:hover {
+    color: #503CC8;
+  }
+  
+  .icon-button:focus {
+    outline: none;
+  }
+  
