@@ -11,8 +11,8 @@ export const sendAudio = async (audioData) => {
   // Construct the request payload
   const requestPayload = {
     config: {
-      encoding: 'LINEAR16', // The audio encoding format
-      sampleRateHertz: 48000, // Updated sample rate in Hertz
+      encoding: 'WEBM_OPUS', // Updated encoding format to match recorded audio
+      sampleRateHertz: 48000, // Sample rate in Hertz
       languageCode: 'en-US', // The language of the input audio
     },
     audio: {
