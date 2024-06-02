@@ -98,7 +98,6 @@ p.listening{
 
 
 
-/* Media Queries for Responsive Design */
 @media (max-width: 600px) {
   .app {
     padding: 10px;
@@ -108,12 +107,12 @@ p.listening{
     padding: 10px;
     border: none;
     border-radius: 0;
-    max-width: 100%; /* Ensure the container uses the full width */
+    max-width: 100%;
   }
 
   .message {
     padding: 10px;
-    max-width: 100%; /* Allow messages to take the full width */
+    max-width: 100%;
   }
 
   .button-container {

@@ -25,7 +25,6 @@ const App = () => {
 
   useEffect(() => {
     if (botResponse) {
-      // Any additional logic you want to add when botResponse changes
     }
   }, [botResponse]);
 
