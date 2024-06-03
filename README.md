@@ -10,8 +10,6 @@
 
 .env
 
-    REACT_APP_GOOGLE_API_KEY = AIzaSyAj4MQYzIfDvDcZwntCE2jNcotR1vl9-oc
-    REACT_APP_OPENAI_API_KEY = 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
 
 ### 3. 서버 실행
 
